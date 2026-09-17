@@ -24,7 +24,10 @@ if engine.dialect.name == "postgresql":
         connection.execute(text("CREATE EXTENSION IF NOT EXISTS postgis"))
 Base.metadata.create_all(bind=engine)
 app = FastAPI(title="Darukaa.Earth API", version="0.1.0")
-app.add_middleware(CORSMiddleware, allow_origins=FRONTEND_ORIGINS, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+app.add_middleware(CORSMiddleware, allow_origins=[
+    FRONTEND_ORIGINS,
+    "https://darukaa-eight.vercel.app/",
+    ], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
 # app.add_middleware(
 #     CORSMiddleware,
